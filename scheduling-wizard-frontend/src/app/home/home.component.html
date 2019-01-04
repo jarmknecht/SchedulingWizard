@@ -1,0 +1,73 @@
+<app-toolbar></app-toolbar>
+
+<mat-card class="main-card">
+
+  <div class="add-classes-events">
+    <form class="form-outer">
+      <mat-form-field class="select-class-form" appearance="outline">
+        <mat-chip-list #chipList>
+          <mat-chip class="class-chip" [style.backgroundColor]="class.color" *ngFor="let class of selectedClasses"
+            [selectable]="selectable" [removable]="removable" (removed)="remove(class)">
+            {{class.course}}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input placeholder="Search for Classes to Add*" #classInput [formControl]="myControl" [matAutocomplete]="auto"
+            [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="selected($event)" [displayWith]="displayFn">
+          <mat-option *ngFor="let class of filteredClasses | async" [value]="class">
+            {{class.course}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
+    <mat-list class="custom-events-list">
+      <h3 mat-subheader *ngIf="false">Custom Events</h3>
+      <mat-card *ngFor="let event of customEvents">
+        <mat-list-item>
+          <div class="event-content">
+            <!--TODO use mat-line attribute to clean up look https://material.angular.io/components/list/examples-->
+            <h4 class="event-name" [attr.title]="event.name.length > 10? event.name : null">{{event.name}}</h4>
+            <span class="event-time">{{event._start | date:"hh:mm a" | lowercase}} - {{event._end | date:"hh:mm a" |
+              lowercase}}</span>
+            <span class="event-days">
+              <span *ngFor="let day of event.daysAbbrev" class="event-day">{{day}}</span>
+            </span>
+          </div>
+          <span class="spacer"></span>
+          <button mat-icon-button>
+            <mat-icon matListIcon color="accent" (click)="editEvent(event)">create</mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon matListIcon color="warn" (click)="deleteEvent(event)">delete</mat-icon>
+          </button>
+        </mat-list-item>
+      </mat-card>
+    </mat-list>
+
+    <button mat-stroked-button color="primary" (click)="addEvent()" class="full-width">
+      Add Custom Event (work, break, etc.)
+    </button>
+
+    <button mat-raised-button color="accent" [disabled]="!selectedClasses || !selectedClasses.length" (click)="generateSchedules()"
+      class="full-width generate-button">
+      Generate Schedules
+    </button>
+  </div>
+
+  <div class="schedules" *ngIf="!!schedules.length">
+    <h2 class="schedules-title">Possible Schedules</h2>
+    <h4 class="schedules-subtitle">{{schedules.length}} results found</h4>
+    <mat-card class="mini-week-card" *ngFor="let s of schedules; index as i" (click)="viewSchedule(s,i)">
+      <app-mini-week [classes]="s.classes" [selectedClasses]="selectedClasses" [customEvents]="customEvents"></app-mini-week>
+    </mat-card>
+  </div>
+
+  <div class="schedules" *ngIf="!schedules.length && hasSearched">
+    <h2 class="schedules-title">Sorry your search didn't find any results</h2>
+    <h4 class="schedules-subtitle">try adjusting the classes or events and try again</h4>
+  </div>
+
+</mat-card>

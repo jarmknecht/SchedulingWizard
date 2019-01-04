@@ -1,0 +1,26 @@
+.full-width {
+  width: 100%;
+}
+
+.half-width {
+  width: 50%;
+  display: inline-block;
+}
+
+h2 {
+  font-weight: lighter;
+  margin: 8px 0 0 0;
+  font-size: 20px;
+}
+
+.mat-dialog-content {
+  max-height: 70vh !important;
+}
+
+.text-red {
+  color: #f44336;
+}
+
+.mat-pseudo-checkbox{
+  background-color: red;
+}

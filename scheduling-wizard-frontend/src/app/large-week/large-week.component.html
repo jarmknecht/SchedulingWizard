@@ -1,0 +1,70 @@
+<div class="wrapper">
+
+  <!--<ng-container *ngFor="let day of schedule; index as d">
+    <div *ngFor="let class of day" class="schedule-day day-{{d}}" [style.top]="(100 - scheduleTop) * (class.start / scheduleHeight) + scheduleTop + '%'"
+      [style.height]="(100 - scheduleTop) * (class.end - class.start) / scheduleHeight - scheduleBottom + '%'"
+      [style.backgroundColor]="class.color"></div>
+  </ng-container>-->
+
+  <!--<ng-container *ngFor="let day of schedule; index as d">
+    <div *ngFor="let class of day" class="schedule-day day-{{d}}" (click)="displayInfo(class)"
+      [style.backgroundColor]="class.color"
+      [ngStyle]="{ top: 'calc((100% - 30px) * ' + (class.start / scheduleHeight) + ')',
+                   height: 'calc((100% - 30px) * ' + (class.end - class.start) / scheduleHeight + ')' }">
+    </div>
+  </ng-container>-->
+
+  <table class="hour-table">
+    <tr class="hour-title-row">
+      <td></td>
+    </tr>
+    <tr *ngFor="let hour of hours">
+      <td class="hour-top">{{hour}}</td>
+    </tr>
+  </table>
+  
+  <!--<table cellspacing="0" cellpadding="0" class="week">
+    <tr>
+      <th *ngFor="let day of weekAbbrev">
+        {{day}}
+      </th>
+    </tr>
+    <tr>
+      <td *ngFor="let day of week" class="day">
+        <table cellspacing="0" cellpadding="0">
+          <tr *ngFor="let hour of hours; last as last">
+            <td class="hour" [class.no-border]="last"></td>
+          </tr>
+        </table>
+      </td>
+      <ng-container *ngFor="let day of schedule; index as d">
+        <div *ngFor="let class of day" class="schedule-day day-{{d}}" (click)="displayInfo(class)" [style.backgroundColor]="class.color"
+          [ngStyle]="{ top: 'calc((100% - 30px) * ' + (class.start / scheduleHeight) + ')',
+                         height: 'calc((100% - 30px) * ' + (class.end - class.start) / scheduleHeight + ')' }">
+        </div>
+      </ng-container>
+    </tr>
+  </table>-->
+  <div class="div-week">
+    <div class="flex">
+      <div *ngFor="let day of weekAbbrev" class="div-week-day-header">
+        {{day}}
+      </div>
+    </div>
+    <div class="flex div-week-inner">
+      <div *ngFor="let day of week" class="div-day">
+          <div *ngFor="let hour of hours; last as last" class="div-hour">
+            <!--<div class="hour" [class.no-border]="last"></div>-->
+          </div>
+      </div>
+      <ng-container *ngFor="let day of schedule; index as d">
+        <div *ngFor="let class of day" class="schedule-day day-{{d}}" (click)="displayInfo(class)" [style.backgroundColor]="class.color"
+          [ngStyle]="{ top: 'calc((100% - 0px) * ' + (class.start / scheduleHeight) + ' - 1px)',
+                             height: 'calc((100% - 0px) * ' + (class.end - class.start) / scheduleHeight + ')' }">
+          <span class="class-block-name">{{class.name}}</span>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>{{isEdit? 'Edit' : 'Add'}} Custom Event</h1>
+<mat-dialog-content>
+  <form [formGroup]="eventData">
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Event Name" formControlName="name" required>
+    </mat-form-field>
+    <div class="half-width">
+      <mat-form-field>
+        <input matInput type="time" name="appt-time" step="300" placeholder="Start" formControlName="start" required>
+      </mat-form-field>
+    </div>
+    <div class="half-width">
+      <mat-form-field>
+        <input matInput type="time" name="appt-time" step="300" placeholder="End" formControlName="end" required>
+      </mat-form-field>
+    </div>
+    <h2 [ngClass]="{ 'text-red' : eventData.controls['days'].hasError('required') && eventData.controls['days'].touched }">Select Days <span>*</span></h2>
+    <mat-selection-list formControlName="days" required>
+      <mat-list-option *ngFor="let day of week" [value]="day" color="primary">
+        {{day}}
+      </mat-list-option>
+    </mat-selection-list>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button mat-dialog-close>Cancel</button>
+  <button mat-flat-button (click)="sendData(eventData.value)" color="primary" [disabled]="!eventData.valid">Save</button>
+</mat-dialog-actions>

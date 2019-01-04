@@ -1,0 +1,20 @@
+.data-wrapper {
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  max-height: calc(var(--modal-height) - 155px);
+  width: 100%;
+}
+
+/*.mat-cell:first-child {
+  border-left-width: 4px;
+}*/
+
+.mat-cell {
+  font-size: 12px !important;
+}
+
+@media screen and (max-width: 1200px) and (min-width: 1000px) {
+  .mat-cell {
+    font-size: 10px !important;
+  }
+} 

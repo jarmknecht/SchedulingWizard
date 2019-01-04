@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Potential Schedule #{{data.schedule.index+1}}</h1>
+<mat-dialog-content>
+  <div class="calendar-wrapper">
+    <app-large-week [classes]="data.schedule.classes" [selectedClasses]="data.selectedClasses" [customEvents]="data.customEvents"></app-large-week>
+  </div>
+  <div class="table-wrapper">
+    <app-class-table [dataSource]="data.schedule.classes" [selectedClasses]="data.selectedClasses"></app-class-table>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-stroked-button mat-dialog-close>Close</button>
+  <!--<button mat-flat-button (click)="sendData(eventData.value)" color="primary" [disabled]="!eventData.valid">Save</button>-->
+</mat-dialog-actions>

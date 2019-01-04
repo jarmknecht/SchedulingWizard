@@ -1,0 +1,40 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.home-button {
+  font-size: 1.4rem;
+}
+
+.active-link {
+  border-bottom: 2px solid white;
+}
+
+.my-toolbar {
+  position: fixed;
+  z-index: 10;
+  background: white;
+}
+
+#image-title {
+  width: 36px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.vert-space {
+  height: 64px;
+  width: 100%;
+}
+
+.buttons button {
+  margin: auto 4px;
+}
+
+.title {
+  background: white;
+  color: black;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+}

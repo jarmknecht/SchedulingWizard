@@ -1,0 +1,73 @@
+.day {
+  width: calc(100% / 5);
+  box-sizing: border-box;
+  border-left: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+}
+
+.week {
+  width: 100%;
+  border-right: 1px solid #aaa;
+  border-top: 1px solid #aaa;
+  overflow: hidden;
+  border-radius: 2px;
+  position: relative;
+}
+
+table {
+  width: 100%;
+  height: 100%;
+}
+
+.hour {
+  height: calc(100% / 12 - 0px);
+  /*border: 1px solid;*/
+}
+
+th {
+  height: 20px;
+  border-left: 1px solid #aaa;
+  border-bottom: 1px solid #aaa;
+  font-weight: lighter;
+  color: #777;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border-spacing: 0;
+}
+
+.schedule-day {
+  width: 44px;
+  position: absolute;
+  /*filter: blur(1px)*/
+}
+
+:host {
+  --week-width: calc(100% - 16px);
+  --week-offset: 1px;
+  --top-offset: 35px;
+  --day-offset: 3px
+}
+
+.day-0 {
+  left: var(--week-offset);
+}
+.day-1 {
+  left: calc(var(--week-width) / 5 + var(--week-offset) + var(--day-offset));
+}
+.day-2 {
+  left: calc(2 * var(--week-width) / 5 + var(--week-offset) + 2 * var(--day-offset));
+}
+.day-3 {
+  left: calc(3 * var(--week-width) / 5 + var(--week-offset) + 3 * var(--day-offset));
+}
+.day-4 {
+  left: calc(4 * var(--week-width) / 5 + var(--week-offset) + 4 * var(--day-offset));
+}
+
+.wrapper {
+  height: 100%;
+  position: relative;
+}
